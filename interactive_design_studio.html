@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Design Studio - Blueprint Studio</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Professional CAD-inspired design studio for creating detailed house blueprints with real-time collaboration and intelligent material suggestions." />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fblueprint5543back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background text-text-primary overflow-hidden">
+    <nav class="bg-white shadow-blueprint sticky top-0 z-50 border-b border-secondary-200">
+        <div class="max-w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14">
+                <div class="flex items-center">
+                    <svg class="h-7 w-7 text-primary mr-3" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="M16 2L4 8v16l12 6 12-6V8L16 2zm0 2.5L25.5 9 16 13.5 6.5 9 16 4.5zM6 10.5l9 4.5v11L6 21.5v-11zm20 0v11L17 26V15l9-4.5z"/>
+                    </svg>
+                    <span class="text-lg font-bold text-primary">Blueprint Studio</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="text-sm">
+                        <span class="text-secondary-500">Project:</span>
+                        <span class="font-medium text-secondary-800">Modern Family Home</span>
+                    </div>
+                    <div class="text-sm">
+                        <span class="text-secondary-500">Last saved:</span>
+                        <span class="text-secondary-600">2 minutes ago</span>
+                    </div>
+                    <div class="flex items-center text-xs text-success">
+                        <svg class="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        Auto-saved
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                    
+                    <button class="btn-secondary text-sm px-4 py-2" id="save-btn">
+                        <svg class="h-4 w-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"/>
+                        </svg>
+                        Save
+                    </button>
+                    <button class="btn-primary text-sm px-4 py-2">Share</button>
+                    
+                    <div class="relative">
+                        <button class="p-2 text-secondary-600 hover:text-secondary-800 animation-smooth" id="menu-btn">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                            </svg>
+                        </button>
+                        
+                        <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-blueprint-lg border border-secondary-200 z-50" id="menu-dropdown">
+                            <div class="py-1">
+                                <a href="homepage.html" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">Home</a>
+                                <a href="project_dashboard.html" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">My Projects</a>
+                                <a href="material_explorer.html" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">Materials</a>
+                                <a href="cost_estimator_hub.html" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">Cost Calculator</a>
+                                <div class="border-t border-secondary-200 my-1"></div>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">Export PDF</a>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">Export DWG</a>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">Print Plans</a>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-50">Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex h-screen">
+        <div class="w-80 bg-white border-r border-secondary-200 flex flex-col">
+            <div class="p-4 border-b border-secondary-200">
+                <h2 class="font-semibold text-secondary-800 mb-3">Advanced Tools</h2>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="btn-primary text-xs px-3 py-2" id="elements-tab">Elements</button>
+                    <button class="text-xs px-3 py-2 text-secondary-600 hover:text-primary hover:bg-secondary-50 rounded animation-smooth" id="drawing-tab">Drawing</button>
+                    <button class="text-xs px-3 py-2 text-secondary-600 hover:text-primary hover:bg-secondary-50 rounded animation-smooth" id="templates-tab">Templates</button>
+                    <button class="text-xs px-3 py-2 text-secondary-600 hover:text-primary hover:bg-secondary-50 rounded animation-smooth" id="components-tab">Components</button>
+                </div>
+            </div>
+            
+            <div id="tool-palette-content" class="flex-grow overflow-y-auto">
+                <div class="p-4" id="elements-tab-content">
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-secondary-700 mb-2">Structure</h3>
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="tool-item">
+                                <button class="btn-tool">
+                                    <svg class="h-6 w-6 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                                    Wall
+                                </button>
+                            </div>
+                            <div class="tool-item">
+                                <button class="btn-tool">
+                                    <svg class="h-6 w-6 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                    Window
+                                </button>
+                            </div>
+                            <div class="tool-item">
+                                <button class="btn-tool">
+                                    <svg class="h-6 w-6 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 12v2a2 2 0 002 2h14a2 2 0 002-2v-2M3 12h18m-1 4h-2M5 16h2M3 8h2m-2 8v2a2 2 0 002 2h14a2 2 0 002-2v-2m-14 0h10a2 2 0 002-2v-2a2 2 0 00-2-2h-10a2 2 0 00-2 2v2a2 2 0 002 2z"/></svg>
+                                    Door
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-grow relative bg-secondary-100">
+            <div id="design-canvas" class="w-full h-full">
+                <model-viewer src="../assets/house-model.gltf" camera-controls touch-action="none" alt="A 3D model of a modern house"></model-viewer>
+            </div>
+            
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 bg-white rounded-full shadow-blueprint-lg p-3 border border-secondary-200">
+                <button class="btn-icon">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                </button>
+                <button class="btn-icon">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </button>
+                <button class="btn-icon">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                </button>
+            </div>
+            
+            <button class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white rounded-full shadow-blueprint p-2 border border-secondary-200">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
